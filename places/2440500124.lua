@@ -176,7 +176,7 @@ local localPlayer = Players.LocalPlayer
 local playerGui = localPlayer.PlayerGui
 local mainUI = playerGui:WaitForChild("MainUI")
 local mainGame = mainUI:WaitForChild("Initiator"):WaitForChild("Main_Game")
-local mainGameSrc = if ExecutorSupport["require"] then require(mainGame) else nil
+local mainGameSrc = require(mainGame)
 
 local playerScripts = localPlayer.PlayerScripts
 local controlModule = if ExecutorSupport["require"] then require(playerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")) else nil
@@ -269,11 +269,11 @@ local Toggles = getgenv().Linoria.Toggles
 local ESPLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/deividcomsono/MS-ESP/refs/heads/main/source.lua"))()
 
 local Window = Library:CreateWindow({
-	Title = "mspaint v2",
+	Title = "mspaint v2 (modified script by tplay)",
 	Center = true,
 	AutoShow = true,
 	Resizable = true,
-    NotifySide = "Right",
+    NotifySide = "Left",
 	ShowCustomCursor = true,
 	TabPadding = 2,
 	MenuFadeTime = 0
@@ -2168,6 +2168,30 @@ local SelfGroupBox = Tabs.Visuals:AddRightGroupbox("Self") do
         Default = 70,
         Min = 70,
         Max = 120,
+        Rounding = 0
+    })
+
+    SelfGroupBox:AddSlider("ViewmodelX", {
+        Text = "Viewmodel Offset X",
+        Default = 0,
+        Min = -1,
+        Max = 1,
+        Rounding = 0
+    })
+
+    SelfGroupBox:AddSlider("ViewmodelY", {
+        Text = "Viewmodel Offset Y",
+        Default = 0,
+        Min = -1,
+        Max = 1,
+        Rounding = 0
+    })
+
+    SelfGroupBox:AddSlider("ViewmodelZ", {
+        Text = "Viewmodel Offset Z",
+        Default = 0,
+        Min = -1,
+        Max = 1,
         Rounding = 0
     })
     
@@ -4599,7 +4623,7 @@ Library:GiveSignal(RunService.RenderStepped:Connect(function()
             camera.CFrame = mainGameSrc.finalCamCFrame * CFrame.new(1.5, -0.5, 6.5)
         end
         mainGameSrc.fovtarget = Options.FOV.Value
-
+        mainGameSrc.tooloffset = Vector3.new(ViewmodelX.Value, ViewmodelY.Value, ViewmodelZ.Value)
         if Toggles.NoCamShake.Value then
             mainGameSrc.csgo = CFrame.new()
         end
