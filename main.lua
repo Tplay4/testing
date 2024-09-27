@@ -123,4 +123,4 @@ if not ExecutorSupport then
     getgenv().ExecutorSupport = executorSupport
 end
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/mspaint/main/places/" .. game.GameId .. ".lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Tplay4/testing/refs/heads/main/places/" .. game.GameId .. ".lua"))()
