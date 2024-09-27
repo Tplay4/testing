@@ -2171,30 +2171,6 @@ local SelfGroupBox = Tabs.Visuals:AddRightGroupbox("Self") do
         Rounding = 0
     })
 
-    SelfGroupBox:AddSlider("ViewmodelX", {
-        Text = "Viewmodel Offset X",
-        Default = 0,
-        Min = -1,
-        Max = 1,
-        Rounding = 0
-    })
-
-    SelfGroupBox:AddSlider("ViewmodelY", {
-        Text = "Viewmodel Offset Y",
-        Default = 0,
-        Min = -1,
-        Max = 1,
-        Rounding = 0
-    })
-
-    SelfGroupBox:AddSlider("ViewmodelZ", {
-        Text = "Viewmodel Offset Z",
-        Default = 0,
-        Min = -1,
-        Max = 1,
-        Rounding = 0
-    })
-    
     SelfGroupBox:AddToggle("NoCamShake", {
         Text = "No Camera Shake",
         Default = false,
@@ -4623,7 +4599,7 @@ Library:GiveSignal(RunService.RenderStepped:Connect(function()
             camera.CFrame = mainGameSrc.finalCamCFrame * CFrame.new(1.5, -0.5, 6.5)
         end
         mainGameSrc.fovtarget = Options.FOV.Value
-        mainGameSrc.tooloffset = Vector3.new(ViewmodelX.Value, ViewmodelY.Value, ViewmodelZ.Value)
+
         if Toggles.NoCamShake.Value then
             mainGameSrc.csgo = CFrame.new()
         end
