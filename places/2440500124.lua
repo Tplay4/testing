@@ -176,7 +176,7 @@ local localPlayer = Players.LocalPlayer
 local playerGui = localPlayer.PlayerGui
 local mainUI = playerGui:WaitForChild("MainUI")
 local mainGame = mainUI:WaitForChild("Initiator"):WaitForChild("Main_Game")
-local mainGameSrc = require(mainGame)
+local mainGameSrc = if ExecutorSupport["require"] then require(mainGame) else nil
 
 local playerScripts = localPlayer.PlayerScripts
 local controlModule = if ExecutorSupport["require"] then require(playerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule")) else nil
@@ -269,11 +269,11 @@ local Toggles = getgenv().Linoria.Toggles
 local ESPLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/deividcomsono/MS-ESP/refs/heads/main/source.lua"))()
 
 local Window = Library:CreateWindow({
-	Title = "mspaint v2 (modified script by tplay)",
+	Title = "mspaint v2",
 	Center = true,
 	AutoShow = true,
 	Resizable = true,
-    NotifySide = "Left",
+    NotifySide = "Right",
 	ShowCustomCursor = true,
 	TabPadding = 2,
 	MenuFadeTime = 0
@@ -2170,7 +2170,7 @@ local SelfGroupBox = Tabs.Visuals:AddRightGroupbox("Self") do
         Max = 120,
         Rounding = 0
     })
-
+    
     SelfGroupBox:AddToggle("NoCamShake", {
         Text = "No Camera Shake",
         Default = false,
